@@ -82,15 +82,15 @@
             textInput = document.getElementById('input-name-button')
             ctx.font = '92px KaiTi, KaiTiGB2312, STKaiti, FangSong, FangSongGB2312, STFangSong';
             ctx.textAlign = 'center'
-            ctx.fillText(textInput.value, 720, 1280)
+            ctx.fillText(textInput.value, 720, 1286)
 
             birthInput = document.getElementById('input-birth-button')
             if (birthInput.value) {
                 birth = new Date(birthInput.value)
                 ctx.font = '92px Trajan Pro, STZhongSong';
-                ctx.fillText("" + birth.getFullYear(), 1080, 1280)
-                ctx.fillText("" + (birth.getMonth() + 1), 1400, 1280)
-                ctx.fillText("" + birth.getDate(), 1680, 1280)
+                ctx.fillText("" + birth.getFullYear(), 1080, 1286)
+                ctx.fillText("" + (birth.getMonth() + 1), 1400, 1286)
+                ctx.fillText("" + birth.getDate(), 1680, 1286)
             }
 
             photoInput = document.getElementById('input-photo-button')
