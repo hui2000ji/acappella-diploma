@@ -1,13 +1,98 @@
 <!DOCTYPE html>
 <html, lang='zh-cn'>
     <head>
-    <title> 改了！ </title>
+        <title>阿卡毕业生专属福利</title>
+        <link href="spectre.css", rel="stylesheet", type="text/css"/>
+        <link href="logo.png" rel="icon" type="image/icon type">
     </head>
     <body>
-    <p id="click"> 点击以更改内容 </p>
+        <div class="navbar">
+            <div class="navbar-center p-centered" style="margin-top: 2em;">
+                <img src="logo.png" style="width: 80px;" />
+                <div id="click" class="h2" style="margin-left: 0.5em;"> 阿卡毕业生学位证书制作 </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top: 3em">
+            <form class="form-horizontal">
+                <div class="column col-10 p-centered">
+                    <div id="input-photo" class="form-group">
+                        <div class="col-3"> 
+                            <label class="form-label" id="input-photo-label">上传您的照片</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-input" id="input-photo-button" type="file" onchange="drawCanvas()" accept="image/jpeg, image/png" name="image"/>
+                        </div>
+                    </div>
+                    <div id="input-birth" class="form-group">
+                        <div class="col-3">
+                            <label class="form-label" id="input-birth-label">选择您的生日</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-input" id="input-birth-button" type="date" onchange="drawCanvas()"/>
+                        </div>
+                    </div>
+                    <div id="input-name" class="form-group">
+                        <div class="col-3">
+                            <label class="form-label" id="input-name-label">输入您的姓名</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-input" id="input-name-button" type="text" onchange="drawCanvas()"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="column col-10 p-centered">
+                <img id="final-image" class="img-responsive"/>
+            </div>
+        </div>
+        <div style="display: none;">
+            <canvas id="canvas" width=1920 height=1080>
+
+            </canvas>
+        </div>
     </body>
     <script>
-        p = document.getElementById("click")
-        p.addEventListener('click', e => p.textContent = 'shit')
+        var getClearedCtx = function() {
+            var canvas = document.getElementById('canvas')
+            var ctx = canvas.getContext('2d')
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            return ctx
+        }
+
+        var drawCanvas = function() {
+            ctx = getClearedCtx()
+
+            textInput = document.getElementById('input-name-button')
+            ctx.font = '36px KaiTi, KaiTiGB2312, STKaiti, FangSong, FangSongGB2312, STFangSong';
+            ctx.textAlign = 'center'
+            ctx.fillText(textInput.value, 250, 60)
+
+            birthInput = document.getElementById('input-birth-button')
+            if (birthInput.value) {
+                birth = new Date(birthInput.value)
+                ctx.fillText("" + birth.getFullYear(), 250, 160)
+                ctx.fillText("" + (birth.getMonth() + 1), 330, 160)
+                ctx.fillText("" + birth.getDate(), 380, 160)
+            }
+
+            photoInput = document.getElementById('input-photo-button')
+            if (photoInput.value) {
+                var img = new Image();
+                img.src = URL.createObjectURL(photoInput.files[0]);
+                img.addEventListener('load', function() {
+                    ctx.drawImage(img, 500, 60, 240, 320)
+
+                    var targetImgURL = canvas.toDataURL();
+                    targetImg = document.getElementById('final-image')
+                    targetImg.src = targetImgURL
+                }, false);
+            }
+
+            var targetImgURL = canvas.toDataURL();
+            targetImg = document.getElementById('final-image')
+            targetImg.src = targetImgURL
+        }
+
+        drawCanvas()
     </script>
 </html>
