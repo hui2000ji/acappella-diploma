@@ -49,9 +49,10 @@
             </div>
         </div>
         <div style="display: none;">
-            <canvas id="canvas" width=2598 height=3780>
+            <canvas id="canvas" width=3780 height=2598>
 
             </canvas>
+            <img id="background-img" src="background.png" crossorigin="anonymous"/>
         </div>
     </body>
     <script>
@@ -63,7 +64,7 @@
         }
 
         var showCanvas = function (canvas) {
-            var targetImgURL = canvas.toDataURL();
+            var targetImgURL = canvas.toDataURL()
             targetImg = document.getElementById('final-image')
             targetImg.src = targetImgURL
         }
@@ -71,24 +72,21 @@
         var drawCanvas = function() {
             let {canvas, ctx} = getClearedCtx()
 
-            var img = new Image();
-            img.src = 'background.png';
-            img.addEventListener('load', function() {
-                ctx.drawImage(img, 0, 0, 2598, 3780)
-                showCanvas(canvas)
-            }, false);
+            let backgroundImg = document.getElementById('background-img')
+            ctx.drawImage(backgroundImg, 0, 0, 3780, 2598)
 
             textInput = document.getElementById('input-name-button')
-            ctx.font = '36px KaiTi, KaiTiGB2312, STKaiti, FangSong, FangSongGB2312, STFangSong';
+            ctx.font = '92px KaiTi, KaiTiGB2312, STKaiti, FangSong, FangSongGB2312, STFangSong';
             ctx.textAlign = 'center'
-            ctx.fillText(textInput.value, 250, 60)
+            ctx.fillText(textInput.value, 720, 1280)
 
             birthInput = document.getElementById('input-birth-button')
             if (birthInput.value) {
                 birth = new Date(birthInput.value)
-                ctx.fillText("" + birth.getFullYear(), 250, 160)
-                ctx.fillText("" + (birth.getMonth() + 1), 330, 160)
-                ctx.fillText("" + birth.getDate(), 380, 160)
+                ctx.font = '92px STZhongSong';
+                ctx.fillText("" + birth.getFullYear(), 1080, 1280)
+                ctx.fillText("" + (birth.getMonth() + 1), 1400, 1280)
+                ctx.fillText("" + birth.getDate(), 1680, 1280)
             }
 
             photoInput = document.getElementById('input-photo-button')
@@ -96,7 +94,7 @@
                 var img = new Image();
                 img.src = URL.createObjectURL(photoInput.files[0]);
                 img.addEventListener('load', function() {
-                    ctx.drawImage(img, 500, 60, 240, 320)
+                    ctx.drawImage(img, 2966, 1165, 405, 540)
                     showCanvas(canvas)
                 }, false);
             }
@@ -104,6 +102,6 @@
             showCanvas(canvas)
         }
 
-        drawCanvas()
+        window.onload = e => drawCanvas()
     </script>
 </html>
