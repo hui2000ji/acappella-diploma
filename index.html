@@ -41,26 +41,42 @@
                     </div>
                 </div>
             </form>
+            <div class="p-centered">
+                <p class="text-primary text-center">填写完以上信息后，右键保存下方的图片即可<br>请尽量使用Firefox/Chrome打开本网页，谢谢！</p>
+            </div>
             <div class="column col-10 p-centered">
                 <img id="final-image" class="img-responsive"/>
             </div>
         </div>
         <div style="display: none;">
-            <canvas id="canvas" width=1920 height=1080>
+            <canvas id="canvas" width=2598 height=3780>
 
             </canvas>
         </div>
     </body>
     <script>
         var getClearedCtx = function() {
-            var canvas = document.getElementById('canvas')
-            var ctx = canvas.getContext('2d')
+            let canvas = document.getElementById('canvas')
+            let ctx = canvas.getContext('2d')
             ctx.clearRect(0, 0, canvas.width, canvas.height)
-            return ctx
+            return {canvas, ctx}
+        }
+
+        var showCanvas = function (canvas) {
+            var targetImgURL = canvas.toDataURL();
+            targetImg = document.getElementById('final-image')
+            targetImg.src = targetImgURL
         }
 
         var drawCanvas = function() {
-            ctx = getClearedCtx()
+            let {canvas, ctx} = getClearedCtx()
+
+            var img = new Image();
+            img.src = 'background.png';
+            img.addEventListener('load', function() {
+                ctx.drawImage(img, 0, 0, 2598, 3780)
+                showCanvas(canvas)
+            }, false);
 
             textInput = document.getElementById('input-name-button')
             ctx.font = '36px KaiTi, KaiTiGB2312, STKaiti, FangSong, FangSongGB2312, STFangSong';
@@ -81,16 +97,11 @@
                 img.src = URL.createObjectURL(photoInput.files[0]);
                 img.addEventListener('load', function() {
                     ctx.drawImage(img, 500, 60, 240, 320)
-
-                    var targetImgURL = canvas.toDataURL();
-                    targetImg = document.getElementById('final-image')
-                    targetImg.src = targetImgURL
+                    showCanvas(canvas)
                 }, false);
             }
 
-            var targetImgURL = canvas.toDataURL();
-            targetImg = document.getElementById('final-image')
-            targetImg.src = targetImgURL
+            showCanvas(canvas)
         }
 
         drawCanvas()
