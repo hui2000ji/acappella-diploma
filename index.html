@@ -1,8 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html, lang='zh-cn'>
     <head>
-    <title> Hello world! </title>
+    <title> 改了！ </title>
     </head>
     <body>
-    <p> This is a paragraph. </p>
+    <p id="click"> 点击以更改内容 </p>
     </body>
+    <script>
+        p = document.getElementById("click")
+        p.addEventListener('clicked', e => p.textContent == 'shit')
+    </script>
 </html>
