@@ -34,14 +34,14 @@ let drawCanvas = function() {
     ctx.drawImage(backgroundImg, 0, 0, 3780, 2598)
 
     textInput = document.getElementById('input-name-button')
-    ctx.font = '80px STSong';
+    ctx.font = '80px MySTSong';
     ctx.textAlign = 'center'
     ctx.fillText(textInput.value, 760, 1275)
 
     birthInput = document.getElementById('input-birth-button')
     if (birthInput.value) {
         birth = new Date(birthInput.value)
-        ctx.font = '80px STSong';
+        ctx.font = '80px MySTSong';
         ctx.fillText("" + birth.getFullYear(), 1145, 1275)
         ctx.fillText("" + (birth.getMonth() + 1), 1428, 1275)
         ctx.fillText("" + birth.getDate(), 1685, 1275)
