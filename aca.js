@@ -1,3 +1,12 @@
+"use strict"
+
+let downloadImg = function() {
+    let targetImg = document.getElementById('final-image')
+    let link = document.createElement('a')
+    link.href = targetImg.src
+    link.click()
+}
+
 let verify = function() {
     let groupInput = document.getElementById('input-group-button')
     if (groupInput.value) {
@@ -23,9 +32,10 @@ let getClearedCtx = function() {
 }
 
 let showCanvas = function (canvas) {
-    let targetImgURL = canvas.toDataURL()
-    targetImg = document.getElementById('final-image')
-    targetImg.src = targetImgURL
+    canvas.toBlob(function(blob) {
+        let targetImg = document.getElementById('final-image')
+        targetImg.src = URL.createObjectURL(blob)
+    })
 }
 
 let drawCanvas = function() {
@@ -34,21 +44,21 @@ let drawCanvas = function() {
     let backgroundImg = document.getElementById('background-img')
     ctx.drawImage(backgroundImg, 0, 0, 3780, 2598)
 
-    textInput = document.getElementById('input-name-button')
+    let textInput = document.getElementById('input-name-button')
     ctx.font = '80px MySTSong';
     ctx.textAlign = 'center'
     ctx.fillText(textInput.value, 760, 1275)
 
-    birthInput = document.getElementById('input-birth-button')
+    let birthInput = document.getElementById('input-birth-button')
     if (birthInput.value) {
-        birth = new Date(birthInput.value)
+        let birth = new Date(birthInput.value)
         ctx.font = '80px MySTSong';
         ctx.fillText("" + birth.getFullYear(), 1145, 1275)
         ctx.fillText("" + (birth.getMonth() + 1), 1428, 1275)
         ctx.fillText("" + birth.getDate(), 1685, 1275)
     }
 
-    photoInput = document.getElementById('input-photo-button')
+    let photoInput = document.getElementById('input-photo-button')
     if (photoInput.value) {
         let img = new Image();
         img.src = URL.createObjectURL(photoInput.files[0]);
@@ -58,7 +68,7 @@ let drawCanvas = function() {
         }, false);
     }
 
-    yearInput = document.getElementById('input-year-button')
+    let yearInput = document.getElementById('input-year-button')
     if (yearInput.value && yearInput.value <= 2020 && yearInput.value >= 2011 && !yearInput.value.includes('.')) {
         let signature = document.getElementById('signature-' + yearInput.value)
         ctx.drawImage(signature, 2110, 1960)
