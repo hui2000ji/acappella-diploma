@@ -1,12 +1,5 @@
 "use strict"
 
-let downloadImg = function() {
-    let targetImg = document.getElementById('final-image')
-    let link = document.createElement('a')
-    link.href = targetImg.src
-    link.click()
-}
-
 let verify = function() {
     let groupInput = document.getElementById('input-group-button')
     if (groupInput.value) {
