@@ -3,8 +3,8 @@
 let verify = function() {
     let groupInput = document.getElementById('input-group-button')
     if (groupInput.value) {
-        // let groups = ['B-One', 'Paca', 'iScream', 'SEAbling', 'Wake-UP', 'Acatrue', 'Sunday昊', 'Vocal Booth']
-        let groups_encrypted = ["U2FsdGVkX18CE858Elt6AH7ncGPBMKz0C7LXXYwd+i8=", "U2FsdGVkX19LfD62aP0OY2kDuPTjvZQD2oQ+PDVzpwU=", "U2FsdGVkX1/zdqeh77he6HHJ1bzQM1OnSeTYc5cSXFA=", "U2FsdGVkX1/lvcXye+Em40AgXWks/YYK0MJpfSdFRx8=", "U2FsdGVkX1/CAMq4Fy5RXVPEZ1hE8ypQilDRB6ZRMk8=", "U2FsdGVkX18mfuHm1wtDzLlO+YQAqXgiPb3xZCbRDps=", "U2FsdGVkX1+bl+DVEOk0uJtYz955P+VC1nLPlEf7Jpk=", "U2FsdGVkX188iQlv8L0Zud0m1JmHsf/CdtjhXxYWcbU="]
+        // let groups = ['B-One', 'Paca', 'iScream', 'SEAbling', 'Wake-UP', 'Acatrue', 'Sunday昊', 'Vocal Booth', 'Kettle']
+        let groups_encrypted = ["U2FsdGVkX18CE858Elt6AH7ncGPBMKz0C7LXXYwd+i8=", "U2FsdGVkX19LfD62aP0OY2kDuPTjvZQD2oQ+PDVzpwU=", "U2FsdGVkX1/zdqeh77he6HHJ1bzQM1OnSeTYc5cSXFA=", "U2FsdGVkX1/lvcXye+Em40AgXWks/YYK0MJpfSdFRx8=", "U2FsdGVkX1/CAMq4Fy5RXVPEZ1hE8ypQilDRB6ZRMk8=", "U2FsdGVkX18mfuHm1wtDzLlO+YQAqXgiPb3xZCbRDps=", "U2FsdGVkX1+bl+DVEOk0uJtYz955P+VC1nLPlEf7Jpk=", "U2FsdGVkX188iQlv8L0Zud0m1JmHsf/CdtjhXxYWcbU=", "U2FsdGVkX1+rby2h0cga5s2GUeGRdTTobnbADD2Sjf0="]
         let key = CryptoJS.AES.decrypt("U2FsdGVkX1+SU7WPgLCNqJraEN+IiENV4gJ5xzML7VhaIoBTTEHJCWRrVVDle778", "我爱皮老师").toString(CryptoJS.enc.Utf8)
         let groups = groups_encrypted.map((val, i, arr) => CryptoJS.AES.decrypt(val, key).toString(CryptoJS.enc.Utf8))
         if (groups.includes(groupInput.value)) {
