@@ -6,101 +6,169 @@
         <link href="logo.png" rel="icon" type="image/icon type">
     </head>
     <body>
-        <div class="navbar">
-            <div class="navbar-center p-centered" style="margin-top: 2em;">
-                <img src="logo.png" style="width: 80px;" />
-                <div id="click" class="h2" style="margin-left: 0.5em;"> 阿卡毕业生学位证书制作 </div>
-            </div>
-        </div>
-        <div class="container" style="margin-top: 3em">
-            <form class="form-horizontal">
-                <div class="column col-10 p-centered">
-                    <div id="input-photo" class="form-group">
-                        <div class="col-3"> 
-                            <label class="form-label" id="input-photo-label">上传您的照片</label>
-                        </div>
-                        <div class="col-9">
-                            <input class="form-input" id="input-photo-button" type="file" onchange="drawCanvas()" accept="image/jpeg, image/png" name="image"/>
-                        </div>
-                    </div>
-                    <div id="input-birth" class="form-group">
-                        <div class="col-3">
-                            <label class="form-label" id="input-birth-label">选择您的生日</label>
-                        </div>
-                        <div class="col-9">
-                            <input class="form-input" id="input-birth-button" type="date" onchange="drawCanvas()"/>
-                        </div>
-                    </div>
-                    <div id="input-name" class="form-group">
-                        <div class="col-3">
-                            <label class="form-label" id="input-name-label">输入您的姓名</label>
-                        </div>
-                        <div class="col-9">
-                            <input class="form-input" id="input-name-button" type="text" onchange="drawCanvas()"/>
-                        </div>
-                    </div>
+        <div style="height: 100vh; margin-bottom: -40px;">
+            <div class="navbar">
+                <div class="navbar-center p-centered" style="margin-top: 2em;">
+                    <img src="logo.png" style="width: 80px;" />
+                    <div id="click" class="h2" style="margin-left: 0.5em;"> 阿卡毕业生学位证书制作 </div>
                 </div>
-            </form>
-            <div class="p-centered">
-                <p class="text-primary text-center">
-                    填写完以上信息后，单击空白处，然后右键（或长按）保存下方的图片即可<br>
-                    请尽量使用Firefox/Chrome打开本网页，谢谢！<br>
-                    如果您在手机端，且长按后看不到“保存图片”的选项，请“分享图片”到微信收藏再保存。
-                </p>
             </div>
-            <div class="column col-10 p-centered">
-                <img id="final-image" class="img-responsive"/>
+            <div id="verify", class="container" style="margin-top: 3em">
+                <form class="form-horizontal">
+                    <div class="column col-10 p-centered">
+                        <div id="input-group" class="form-group">
+                            <div class="col-3"> 
+                                <label class="form-label" id="input-group-label">输入您所在的乐团名</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-input" id="input-group-button" type="text" oninput="verify()"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="p-centered">
+                    <p class="text-primary text-center" style="margin-top: 1em">
+                        乐团名<b>区分大小写</b>，末尾无需输入“乐团”或“人声乐团”字样<br>
+                        请尽量使用Firefox/Chrome打开本网页，谢谢！
+                    </p>
+                </div>
+            </div>
+            <div id="content" class="container" style="margin-top: 3em; display: none">
+                <form class="form-horizontal">
+                    <div class="column col-10 p-centered">
+                        <div id="input-photo" class="form-group">
+                            <div class="col-3"> 
+                                <label class="form-label" id="input-photo-label">上传您的照片（比例4:3）</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-input" id="input-photo-button" type="file" onchange="drawCanvas()" accept="image/jpeg, image/png" name="image"/>
+                            </div>
+                        </div>
+                        <div id="input-birth" class="form-group">
+                            <div class="col-3">
+                                <label class="form-label" id="input-birth-label">选择您的生日</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-input" id="input-birth-button" type="date" onchange="drawCanvas()"/>
+                            </div>
+                        </div>
+                        <div id="input-name" class="form-group">
+                            <div class="col-3">
+                                <label class="form-label" id="input-name-label">输入您的姓名</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-input" id="input-name-button" type="text" onchange="drawCanvas()"/>
+                            </div>
+                        </div>
+                        <div id="input-year" class="form-group">
+                            <div class="col-3">
+                                <label class="form-label" id="input-year-label">输入您的毕业年份</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-input" id="input-year-button" type="text" onchange="drawCanvas()"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="p-centered">
+                    <p class="text-primary text-center" style="margin-top: 1em">
+                        填写完以上信息后，单击空白处，然后右键（或长按）保存下方的图片即可<br>
+                        请尽量使用Firefox/Chrome打开本网页，谢谢！<br>
+                        如果您在手机端，且长按后看不到“保存图片”的选项，请“分享图片”到微信收藏再保存。
+                    </p>
+                </div>
+                <div class="column col-10 p-centered">
+                    <img id="final-image" class="img-responsive"/>
+                </div>
+            </div>
+            <div style="display: none;">
+                <canvas id="canvas" width=3780 height=2598>
+    
+                </canvas>
+                <img id="background-img" src="background.png" crossorigin="anonymous"/>
+                <img id="signature-2011" src="2011.png" crossorigin="anonymous"/>
+                <img id="signature-2012" src="2012.png" crossorigin="anonymous"/>
+                <img id="signature-2013" src="2013.png" crossorigin="anonymous"/>
+                <img id="signature-2014" src="2014.png" crossorigin="anonymous"/>
+                <img id="signature-2015" src="2015.png" crossorigin="anonymous"/> <!-- 蛋总 -->
+                <img id="signature-2016" src="2016.png" crossorigin="anonymous"/> <!-- 能 -->
+                <img id="signature-2017" src="2017.png" crossorigin="anonymous"/> <!-- 裴 -->
+                <img id="signature-2018" src="2018.png" crossorigin="anonymous"/> <!-- 品璇 -->
+                <img id="signature-2019" src="2019.png" crossorigin="anonymous"/> <!-- 理解 -->
+                <img id="signature-2020" src="2020.png" crossorigin="anonymous"/> <!-- 愫愫 -->
             </div>
         </div>
-        <div style="display: none;">
-            <canvas id="canvas" width=3780 height=2598>
-
-            </canvas>
-            <img id="background-img" src="background.png" crossorigin="anonymous"/>
-        </div>
+        <footer class="container" style="height: 40px;">
+            <div class="p-centered text-center">
+                一声无管弦，一和拾壹年
+            </div>
+        </footer>
     </body>
+    <script src="aes.js"></script>
     <script>
-        var getClearedCtx = function() {
+        let verify = function() {
+            let groupInput = document.getElementById('input-group-button')
+            if (groupInput.value) {
+                // let groups = ['B-One', 'Paca', 'iScream', 'SEAbling', 'Wake-UP', 'Acatrue', 'Sunday昊', 'Vocal Booth']
+                let groups_encrypted = ["U2FsdGVkX18CE858Elt6AH7ncGPBMKz0C7LXXYwd+i8=", "U2FsdGVkX19LfD62aP0OY2kDuPTjvZQD2oQ+PDVzpwU=", "U2FsdGVkX1/zdqeh77he6HHJ1bzQM1OnSeTYc5cSXFA=", "U2FsdGVkX1/lvcXye+Em40AgXWks/YYK0MJpfSdFRx8=", "U2FsdGVkX1/CAMq4Fy5RXVPEZ1hE8ypQilDRB6ZRMk8=", "U2FsdGVkX18mfuHm1wtDzLlO+YQAqXgiPb3xZCbRDps=", "U2FsdGVkX1+bl+DVEOk0uJtYz955P+VC1nLPlEf7Jpk=", "U2FsdGVkX188iQlv8L0Zud0m1JmHsf/CdtjhXxYWcbU="]
+                let key = CryptoJS.AES.decrypt("U2FsdGVkX1+SU7WPgLCNqJraEN+IiENV4gJ5xzML7VhaIoBTTEHJCWRrVVDle778", "我爱皮老师").toString(CryptoJS.enc.Utf8)
+                let groups = groups_encrypted.map((val, i, arr) => CryptoJS.AES.decrypt(val, key).toString(CryptoJS.enc.Utf8))
+                if (groups.includes(groupInput.value)) {
+                    let verifyElem = document.getElementById('verify')
+                    let contentElem = document.getElementById('content')
+                    verifyElem.style.display = "none"
+                    contentElem.style.display = ""
+                }
+            }
+        }
+
+        let getClearedCtx = function() {
             let canvas = document.getElementById('canvas')
             let ctx = canvas.getContext('2d')
             ctx.clearRect(0, 0, canvas.width, canvas.height)
             return {canvas, ctx}
         }
 
-        var showCanvas = function (canvas) {
-            var targetImgURL = canvas.toDataURL()
+        let showCanvas = function (canvas) {
+            let targetImgURL = canvas.toDataURL()
             targetImg = document.getElementById('final-image')
             targetImg.src = targetImgURL
         }
 
-        var drawCanvas = function() {
+        let drawCanvas = function() {
             let {canvas, ctx} = getClearedCtx()
 
             let backgroundImg = document.getElementById('background-img')
             ctx.drawImage(backgroundImg, 0, 0, 3780, 2598)
 
             textInput = document.getElementById('input-name-button')
-            ctx.font = '92px KaiTi, KaiTiGB2312, STKaiti, FangSong, FangSongGB2312, STFangSong';
+            ctx.font = '80px STSong';
             ctx.textAlign = 'center'
-            ctx.fillText(textInput.value, 720, 1286)
+            ctx.fillText(textInput.value, 760, 1275)
 
             birthInput = document.getElementById('input-birth-button')
             if (birthInput.value) {
                 birth = new Date(birthInput.value)
-                ctx.font = '92px Trajan Pro, STZhongSong';
-                ctx.fillText("" + birth.getFullYear(), 1080, 1286)
-                ctx.fillText("" + (birth.getMonth() + 1), 1400, 1286)
-                ctx.fillText("" + birth.getDate(), 1680, 1286)
+                ctx.font = '80px STSong';
+                ctx.fillText("" + birth.getFullYear(), 1145, 1275)
+                ctx.fillText("" + (birth.getMonth() + 1), 1428, 1275)
+                ctx.fillText("" + birth.getDate(), 1685, 1275)
             }
 
             photoInput = document.getElementById('input-photo-button')
             if (photoInput.value) {
-                var img = new Image();
+                let img = new Image();
                 img.src = URL.createObjectURL(photoInput.files[0]);
                 img.addEventListener('load', function() {
-                    ctx.drawImage(img, 2966, 1165, 405, 540)
+                    ctx.drawImage(img, 2885, 1060, 569, 758)
                     showCanvas(canvas)
                 }, false);
+            }
+
+            yearInput = document.getElementById('input-year-button')
+            if (yearInput.value && yearInput.value <= 2020 && yearInput.value >= 2011 && !yearInput.value.includes('.')) {
+                let signature = document.getElementById('signature-' + yearInput.value)
+                ctx.drawImage(signature, 2110, 1960)
             }
 
             showCanvas(canvas)
