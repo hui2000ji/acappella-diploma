@@ -10,6 +10,7 @@ let verify = function() {
             let contentElem = document.getElementById('content')
             verifyElem.style.display = "none"
             contentElem.style.display = ""
+            drawCanvas()
         }
     }
 }
@@ -65,5 +66,3 @@ let drawCanvas = function() {
 
     showCanvas(canvas)
 }
-
-window.onload = e => drawCanvas()
