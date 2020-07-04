@@ -61,3 +61,5 @@ let drawCanvas = function() {
     let progressBarElem = document.getElementById('progress-bar')
     progressBarElem.style.width = progress + '%'
 }
+
+window.onload = () => drawCanvas()
