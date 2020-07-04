@@ -14,29 +14,9 @@
                     <div id="click" class="h2" style="margin-left: 0.5em;"> 阿卡毕业生学位证书制作 </div>
                 </div>
             </div>
-            <div id="verify", class="container" style="margin-top: 3em">
-                <form class="form-horizontal">
-                    <div class="column col-10 p-centered">
-                        <div id="input-group" class="form-group">
-                            <div class="col-3"> 
-                                <label class="form-label" id="input-group-label">输入您所在的乐团名</label>
-                            </div>
-                            <div class="col-9">
-                                <input class="form-input" id="input-group-button" type="text" oninput="verify()"/>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <div class="p-centered">
-                    <p class="text-primary text-center" style="margin-top: 1em">
-                        乐团名<b>区分大小写</b>，末尾无需输入“乐团”或“人声乐团”字样<br>
-                        请尽量使用Firefox/Chrome打开本网页
-                    </p>
-                </div>
-            </div>
-            <div id="content" class="container" style="margin-top: 3em; display: none">
-                <form class="form-horizontal">
-                    <div class="column col-10 p-centered">
+            <div id="content" class="container" style="margin-top: 3em">
+                <div class="column col-10 p-centered">
+                    <form class="form-horizontal">
                         <div id="input-photo" class="form-group">
                             <div class="col-3"> 
                                 <label class="form-label" id="input-photo-label">上传您的照片（比例4:3）</label>
@@ -63,20 +43,39 @@
                         </div>
                         <div id="input-year" class="form-group">
                             <div class="col-3">
-                                <label class="form-label" id="input-year-label">输入您的毕业年份</label>
+                                <label class="form-label" id="input-year-label">选择您的毕业年份</label>
                             </div>
                             <div class="col-9">
-                                <input class="form-input" id="input-year-button" type="text" onchange="drawCanvas()"/>
+                                <div class="form-group">
+                                    <select id="input-year-button" class="form-select" onchange="drawCanvas()">
+                                        <option>请选择</option>
+                                        <option>2010</option>
+                                        <option>2011</option>
+                                        <option>2012</option>
+                                        <option>2013</option>
+                                        <option>2014</option>
+                                        <option>2015</option>
+                                        <option>2016</option>
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                        <option>2019</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
+                    </form>
+                    <div class="p-centered">
+                        <p class="text-primary text-center" style="margin-top: 1em">
+                            填写完以上信息后，单击空白处，然后右键（或长按）保存下方的图片即可<br>
+                            底图有点大，如长时间未显示，还请大家耐心等待或尝试刷新，谢谢！<br>
+                            请尽量使用Firefox/Chrome打开本网页
+                        </p>
                     </div>
-                </form>
-                <div class="p-centered">
-                    <p class="text-primary text-center" style="margin-top: 1em">
-                        填写完以上信息后，单击空白处，然后右键（或长按）保存下方的图片即可<br>
-                        底图有点大，如长时间未显示，还请大家耐心等待或尝试刷新，谢谢！<br>
-                        请尽量使用Firefox/Chrome打开本网页
-                    </p>
+                    <div class="bar bar-slider" style="margin-top: 1em;">
+                        <div id="progress-bar" class="bar-item" role="progressbar" style="width: 0%">
+                            <button class="bar-slider-btn btn" role="slider"></button>
+                        </div>
+                    </div>
                 </div>
                 <div class="column col-10 p-centered" style="margin-top: 2em; margin-bottom: 80px">
                     <img id="final-image" class="img-responsive"/>
@@ -87,16 +86,16 @@
     
                 </canvas>
                 <img id="background-img" src="background.png" crossorigin="anonymous"/>
-                <img id="signature-2011" src="2011.png" crossorigin="anonymous"/>
-                <img id="signature-2012" src="2012.png" crossorigin="anonymous"/>
-                <img id="signature-2013" src="2013.png" crossorigin="anonymous"/>
-                <img id="signature-2014" src="2014.png" crossorigin="anonymous"/>
-                <img id="signature-2015" src="2015.png" crossorigin="anonymous"/> <!-- 蛋总 -->
-                <img id="signature-2016" src="2016.png" crossorigin="anonymous"/> <!-- 能 -->
-                <img id="signature-2017" src="2017.png" crossorigin="anonymous"/> <!-- 裴 -->
-                <img id="signature-2018" src="2018.png" crossorigin="anonymous"/> <!-- 品璇 -->
-                <img id="signature-2019" src="2019.png" crossorigin="anonymous"/> <!-- 理解 -->
-                <img id="signature-2020" src="2020.png" crossorigin="anonymous"/> <!-- 愫愫 -->
+                <img id="signature-2010" src="2010.png" crossorigin="anonymous"/> <!-- 2010-易飞 -->
+                <img id="signature-2011" src="2011.png" crossorigin="anonymous"/> <!-- 2011-贾子尧 -->
+                <img id="signature-2012" src="2012.png" crossorigin="anonymous"/> <!-- 2012-沈沛 -->
+                <img id="signature-2013" src="2013.png" crossorigin="anonymous"/> <!-- 2013-李泽堃 -->
+                <img id="signature-2014" src="2014.png" crossorigin="anonymous"/> <!-- 2014-吴匯琳 -->
+                <img id="signature-2015" src="2015.png" crossorigin="anonymous"/> <!-- 2015-石林 -->
+                <img id="signature-2016" src="2016.png" crossorigin="anonymous"/> <!-- 2016-张雅能 -->
+                <img id="signature-2017" src="2017.png" crossorigin="anonymous"/> <!-- 2017-裴玮来 -->
+                <img id="signature-2018" src="2018.png" crossorigin="anonymous"/> <!-- 2018-李品璇 -->
+                <img id="signature-2019" src="2019.png" crossorigin="anonymous"/> <!-- 2019-李苑彤 -->
             </div>
         </div>
         <footer class="container" style="height: 50px;">

@@ -1,22 +1,5 @@
 "use strict"
 
-let verify = function() {
-    let groupInput = document.getElementById('input-group-button')
-    if (groupInput.value) {
-        // let groups = ['B-One', 'Paca', 'iScream', 'SEAbling', 'Wake-UP', 'Acatrue', 'Sunday昊', 'Vocal Booth', 'Kettle']
-        let groups_encrypted = ["U2FsdGVkX18CE858Elt6AH7ncGPBMKz0C7LXXYwd+i8=", "U2FsdGVkX19LfD62aP0OY2kDuPTjvZQD2oQ+PDVzpwU=", "U2FsdGVkX1/zdqeh77he6HHJ1bzQM1OnSeTYc5cSXFA=", "U2FsdGVkX1/lvcXye+Em40AgXWks/YYK0MJpfSdFRx8=", "U2FsdGVkX1/CAMq4Fy5RXVPEZ1hE8ypQilDRB6ZRMk8=", "U2FsdGVkX18mfuHm1wtDzLlO+YQAqXgiPb3xZCbRDps=", "U2FsdGVkX1+bl+DVEOk0uJtYz955P+VC1nLPlEf7Jpk=", "U2FsdGVkX188iQlv8L0Zud0m1JmHsf/CdtjhXxYWcbU=", "U2FsdGVkX1+rby2h0cga5s2GUeGRdTTobnbADD2Sjf0="]
-        let key = CryptoJS.AES.decrypt("U2FsdGVkX1+SU7WPgLCNqJraEN+IiENV4gJ5xzML7VhaIoBTTEHJCWRrVVDle778", "我爱皮老师").toString(CryptoJS.enc.Utf8)
-        let groups = groups_encrypted.map((val, i, arr) => CryptoJS.AES.decrypt(val, key).toString(CryptoJS.enc.Utf8))
-        if (groups.includes(groupInput.value)) {
-            let verifyElem = document.getElementById('verify')
-            let contentElem = document.getElementById('content')
-            verifyElem.style.display = "none"
-            contentElem.style.display = ""
-            drawCanvas()
-        }
-    }
-}
-
 let getClearedCtx = function() {
     let canvas = document.getElementById('canvas')
     let ctx = canvas.getContext('2d')
@@ -33,26 +16,32 @@ let showCanvas = function (canvas) {
 
 let drawCanvas = function() {
     let {canvas, ctx} = getClearedCtx()
+    let progress = 0
 
     let backgroundImg = document.getElementById('background-img')
     ctx.drawImage(backgroundImg, 0, 0, 3780, 2598)
 
-    let textInput = document.getElementById('input-name-button')
-    ctx.font = '80px STSong, Noto Serif SC';
-    ctx.textAlign = 'center'
-    ctx.fillText(textInput.value, 760, 1275)
+    let nameInput = document.getElementById('input-name-button')
+    if (nameInput.value) {
+        progress += 25
+        ctx.font = '76px STSong, Noto Serif SC';
+        ctx.textAlign = 'center'
+        ctx.fillText(nameInput.value, 760, 1270)
+    }
 
     let birthInput = document.getElementById('input-birth-button')
     if (birthInput.value) {
+        progress += 25
         let birth = new Date(birthInput.value)
-        ctx.font = '80px STSong, Noto Serif SC';
-        ctx.fillText("" + birth.getFullYear(), 1145, 1275)
-        ctx.fillText("" + (birth.getMonth() + 1), 1428, 1275)
-        ctx.fillText("" + birth.getDate(), 1685, 1275)
+        ctx.font = '76px STSong, Noto Serif SC';
+        ctx.fillText("" + birth.getFullYear(), 1145, 1270)
+        ctx.fillText("" + (birth.getMonth() + 1), 1428, 1270)
+        ctx.fillText("" + birth.getDate(), 1685, 1270)
     }
 
     let photoInput = document.getElementById('input-photo-button')
     if (photoInput.value) {
+        progress += 25
         let img = new Image();
         img.src = URL.createObjectURL(photoInput.files[0]);
         img.addEventListener('load', function() {
@@ -62,10 +51,13 @@ let drawCanvas = function() {
     }
 
     let yearInput = document.getElementById('input-year-button')
-    if (yearInput.value && yearInput.value <= 2020 && yearInput.value >= 2011 && !yearInput.value.includes('.')) {
+    if (yearInput.value && yearInput.value <= 2019 && yearInput.value >= 2010) {
+        progress += 25
         let signature = document.getElementById('signature-' + yearInput.value)
-        ctx.drawImage(signature, 2110, 1960)
+        ctx.drawImage(signature, 1700, 1920, 525, 393)
     }
 
     showCanvas(canvas)
+    let progressBarElem = document.getElementById('progress-bar')
+    progressBarElem.style.width = progress + '%'
 }
