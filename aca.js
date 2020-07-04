@@ -57,6 +57,11 @@ let drawCanvas = function() {
         ctx.drawImage(signature, 1700, 1920, 525, 393)
     }
 
+    ctx.font = '76px STSong, Noto Serif SC';
+    ctx.fillText("2020", 2770, 2265)
+    ctx.fillText("7", 3100, 2265)
+    ctx.fillText("2", 3320, 2265)
+
     showCanvas(canvas)
     let progressBarElem = document.getElementById('progress-bar')
     progressBarElem.style.width = progress + '%'
