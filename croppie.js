@@ -390,8 +390,8 @@
             addClass(viewport, customViewportClass);
         }
         css(viewport, {
-            width: self.options.viewport.width,
-            height: self.options.viewport.height
+            width: self.options.viewport.width + 'px',
+            height: self.options.viewport.height + 'px'
         });
         viewport.setAttribute('tabindex', 0);
 
@@ -1201,7 +1201,7 @@
         }
 
         // The largest possible source width is the original image's width.
-        if (sWidth + sx > self._originalImageWidth) {
+        if (sWidth + sx > (self.data.orientation >= 5 ? self._originalImageHeight : self._originalImageWidth)) {
             sWidth = self._originalImageWidth - sx;
             dWidth =  (sWidth / width) * canvasWidth;
         }
@@ -1217,7 +1217,7 @@
         }
 
         // The largest possible source height is the original image's height.
-        if (sHeight + sy > self._originalImageHeight) {
+        if (sHeight + sy > (self.data.orientation >= 5 ? self._originalImageWidth : self._originalImageHeight)) {
             sHeight = self._originalImageHeight - sy;
             dHeight = (sHeight / height) * canvasHeight;
         }

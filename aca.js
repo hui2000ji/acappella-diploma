@@ -26,13 +26,15 @@ let drawImageThenShowCanvas = function(img, ctx) {
 }
 
 let croppie = new Croppie(document.getElementById('cropper'), {
-    viewport: { width: '240px', height: '320px' },
+    viewport: { width: 240, height: 320 },
+    boundary: { width: 300, height: 400 },
     showZoomer: false,
+    enableExif: true,
     enableOrientation: true
 });
 
 let cropImg = function() {
-    croppie.result('blob').then(function(blob) {
+    croppie.result({type: 'blob'}).then(function(blob) {
         let img = document.getElementById('cropped-photo');
         if (img.src)
             URL.revokeObjectURL(img.src)
@@ -111,7 +113,8 @@ let drawCanvas = function() {
     
             img.onload =  function() {
                 croppie.bind({
-                    url: img.src
+                    url: img.src,
+                    zoom: 0
                 }).then(() => cropImg())
             }
         } else if (imgLoaded) {
