@@ -113,11 +113,8 @@ let drawCanvas = function() {
                 }).then(() => cropImg())
             }
         } else if (imgLoaded) {
-            let imgScale = img.width / img.height
-            if (imgScale < 0.72 || imgScale > 0.78) {
-                let croppedImg = document.getElementById('cropped-photo')
-                drawImageThenShowCanvas(croppedImg, ctx)
-            } else drawImageThenShowCanvas(img, ctx)
+            let croppedImg = document.getElementById('cropped-photo')
+            drawImageThenShowCanvas(croppedImg, ctx)
         }
     }
 
