@@ -108,18 +108,9 @@ let drawCanvas = function() {
             img.src = URL.createObjectURL(photoInput.files[0]);
     
             img.onload =  function() {
-                let cropElem = document.getElementById('cropper-display')
-                let imgScale = img.width / img.height
-                if (imgScale < 0.72 || imgScale > 0.78) {
-                    cropElem.style.display = ''
-                    croppie.bind({
-                        url: img.src
-                    }).then(() => cropImg())
-                } else {
-                    cropElem.style.display = 'none'
-                    drawImageThenShowCanvas(img, ctx)
-                    imgLoaded = true
-                }
+                croppie.bind({
+                    url: img.src
+                }).then(() => cropImg())
             }
         } else if (imgLoaded) {
             let imgScale = img.width / img.height

@@ -78,22 +78,20 @@
                         </div>
                     </div>
                 </div>
-                <div id="cropper-display" class="column col-5 col-xs-10 p-centered" style="margin-top: 2em; display: none;">
+                <div id="cropper-display" class="column col-5 col-xs-10 p-centered" style="margin-top: 2em;">
                     <div class="card p-centered">
                         <div class="card-image" style="padding-top: 2em;">
                             <div id="cropper" class="p-centered" style="width: 300px; height: 400px;"></div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-header">
+                            <div class="card-title text-center text-gray">请在此裁剪您的照片</div>
+                        </div>
+                        <div class="card-footer">
                             <div class="text-center" style="margin-top: 1em">
                                 <button class="btn btn-primary" onclick="cropImg()">裁剪</button>
                                 <button class="btn" onclick="rotateImg(90)">左旋90度</button>
                                 <button class="btn" onclick="rotateImg(-90)">右旋90度</button>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <p class="text-primary text-center">
-                                您的图片比例不是4:3，请裁剪后放入证书中。
-                            </p>
                         </div>
                     </div>
                 </div>
