@@ -99,6 +99,8 @@ let drawCanvas = function() {
     if (photoInput.value) {
         progress += 25
         let img = document.getElementById('photo')
+        let cropperElem = document.getElementById('cropper-display')
+        cropperElem.style.display = ''
 
         if (lastUploadedImgFile !== photoInput.files[0]) {
             imgLoaded = false
