@@ -3,6 +3,7 @@
     <head>
         <title>阿卡毕业生专属福利</title>
         <link href="spectre.css", rel="stylesheet", type="text/css"/>
+        <link href="croppie.css", rel="stylesheet", type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Noto%20Serif%20SC", rel="stylesheet", type="text/css"/>
         <link href="logo.png" rel="icon" type="image/icon type">
     </head>
@@ -77,14 +78,33 @@
                         </div>
                     </div>
                 </div>
+                <div id="cropper-display" class="column col-5 col-xs-10 p-centered" style="margin-top: 2em; display: none;">
+                    <div class="card p-centered">
+                        <div class="card-image" style="padding-top: 2em;">
+                            <div id="cropper" class="p-centered" style="width: 300px; height: 400px;"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center" style="margin-top: 1em">
+                                <button class="btn btn-primary" onclick="cropImg()">裁剪</button>
+                                <button class="btn" onclick="rotateImg(90)">左旋90度</button>
+                                <button class="btn" onclick="rotateImg(-90)">右旋90度</button>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <p class="text-primary text-center">
+                                您的图片比例不是4:3，请裁剪后放入证书中。
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <div class="column col-10 p-centered" style="margin-top: 2em; margin-bottom: 80px">
                     <img id="final-image" class="img-responsive"/>
                 </div>
             </div>
             <div style="display: none;">
-                <canvas id="canvas" width=3780 height=2598>
-    
-                </canvas>
+                <canvas id="canvas" width=3780 height=2598></canvas>
+                <img id="photo" crossorigin="anonymous" style="width: auto; height: auto"/>
+                <img id="cropped-photo" crossorigin="anonymous" style="width: auto; height: auto"/>
                 <img id="background-img" src="background.png" crossorigin="anonymous"/>
                 <img id="signature-2010" src="2010.png" crossorigin="anonymous"/> <!-- 2010-易飞 -->
                 <img id="signature-2011" src="2011.png" crossorigin="anonymous"/> <!-- 2011-贾子尧 -->
@@ -104,5 +124,6 @@
             </div>
         </footer>
     </body>
+    <script src="croppie.js"></script>
     <script src="aca.js"></script>
 </html>
